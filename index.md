@@ -1,6 +1,10 @@
 ---
 layout: showcase
 title: dino
+image:
+  meta:
+    src: /dino.png
+    alt: Chrome Dino
 ---
 
 I was inspired by a great [video of someone using a light sensor and a servo to play `chrome://dino`](https://imgur.com/gallery/u8bkoIX), so I decided that it must be pretty easy to make a software version of it!
