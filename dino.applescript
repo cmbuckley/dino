@@ -4,7 +4,7 @@ on boundsToRect(theBounds)
 	set boxHeight to 50
 
 	set item 2 of theBounds to (item 2 of theBounds) + 110 -- remove window chrome
-	set item 1 of theBounds to (((item 3 of theBounds) - (item 1 of theBounds)) * 0.27) + (item 1 of theBounds) - (boxWidth / 2)
+	set item 1 of theBounds to (((item 3 of theBounds) - (item 1 of theBounds)) * 0.25) + (item 1 of theBounds) - (boxWidth / 2)
 	set item 2 of theBounds to (((item 4 of theBounds) - (item 2 of theBounds)) * 0.59) + (item 2 of theBounds) - (boxHeight / 2)
 	set item 3 of theBounds to boxWidth
 	set item 4 of theBounds to boxHeight
@@ -40,12 +40,11 @@ delay 3
 -- a region a little in front of the dino and above the ground
 set keyRect to join(boundsToRect(dinoBounds), ",")
 
-repeat 300 times -- 30 seconds
+repeat 300 times
 	do shell script "screencapture -x -R " & keyRect & " /tmp/dino.png"
 	-- get a 1x1 pixel average of the contents, it should be white
 	set scriptOutput to do shell script "/usr/local/bin/convert /tmp/dino.png -scale 1x1\\! txt:- | egrep -o '#\\w+'"
 	if scriptOutput is not "#FFFFFFFF" then -- obstacle
 		press(space)
 	end if
-	delay 0.1
 end repeat
