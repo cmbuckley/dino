@@ -14,6 +14,7 @@ I was inspired by a great [video of someone using a light sensor and a servo to 
 * The capture location (based on window percentage) is probably very brittle.
 * I don't think it can deal with birds. (Probably needs to be able to duck as well.)
 * Currently has no hope of working when it gets faster, let alone the "night stage".
+* Arbitrarily runs for 30 seconds and sends spaces to any active window. Should detect game over.
 
 ## Why?
 
