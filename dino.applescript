@@ -48,9 +48,9 @@ set keyRect to join(boundsToBox(dinoBounds, 0.28, 0.59, 100, 50), ",")
 
 repeat 300 times
 	do shell script "screencapture -x -R " & keyRect & " /tmp/dino.png"
-	-- get a 1x1 pixel average of the contents, it should be white
-	set scriptOutput to do shell script "/usr/local/bin/convert /tmp/dino.png -scale 1x1\\! txt:- | egrep -o '#\\w+'"
-	if scriptOutput is not "#FFFFFFFF" then -- obstacle
+	-- count unique colours in the image, should be 1
+	set scriptOutput to do shell script "/usr/local/bin/identify -format '%k' /tmp/dino.png"
+	if scriptOutput is not "1" then -- obstacle
 		press(space)
 	end if
 end repeat
