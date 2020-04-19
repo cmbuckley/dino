@@ -19,6 +19,13 @@ on join(theList, theDelimiter)
 	return joined
 end join
 
+-- send keypress to browser
+on press(theKey)
+	tell application "System Events" to tell process "Google Chrome"
+		keystroke theKey
+	end tell
+end press
+
 -- open the game
 tell application "Google Chrome"
 	open location "chrome://dino"
@@ -27,9 +34,7 @@ end tell
 delay 1
 
 -- start the game
-tell application "System Events" to tell process "Google Chrome"
-	keystroke space
-end tell
+press(space)
 delay 3
 
 -- a region a little in front of the dino and above the ground
@@ -40,9 +45,7 @@ repeat 300 times -- 30 seconds
 	-- get a 1x1 pixel average of the contents, it should be white
 	set scriptOutput to do shell script "/usr/local/bin/convert /tmp/dino.png -scale 1x1\\! txt:- | egrep -o '#\\w+'"
 	if scriptOutput is not "#FFFFFFFF" then -- obstacle
-		tell application "System Events" to tell process "Google Chrome"
-			keystroke space
-		end tell
+		press(space)
 	end if
 	delay 0.1
 end repeat
