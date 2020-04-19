@@ -1,15 +1,21 @@
--- window bounds are {x1, y1, x2, y2}, we want {x, y, w, h}
-on boundsToRect(theBounds)
-	set boxWidth to 100
-	set boxHeight to 50
+-- returns a box within the bounds centered at {xPercent, yPercent}
+on boundsToBox(theBounds, xPercent, yPercent, boxWidth, boxHeight)
+	set chromeHeight to 110
 
-	set item 2 of theBounds to (item 2 of theBounds) + 110 -- remove window chrome
-	set item 1 of theBounds to (((item 3 of theBounds) - (item 1 of theBounds)) * 0.25) + (item 1 of theBounds) - (boxWidth / 2)
-	set item 2 of theBounds to (((item 4 of theBounds) - (item 2 of theBounds)) * 0.59) + (item 2 of theBounds) - (boxHeight / 2)
-	set item 3 of theBounds to boxWidth
-	set item 4 of theBounds to boxHeight
-	return theBounds
-end boundsToRect
+	set windowRect to {¬
+		item 1 of theBounds, ¬
+		(item 2 of theBounds) + chromeHeight, ¬
+		(item 3 of theBounds) - (item 1 of theBounds), ¬
+		(item 4 of theBounds) - (item 2 of theBounds) - chromeHeight ¬
+	}
+
+	return {¬
+		((item 3 of windowRect) * xPercent) + (item 1 of windowRect) - (boxWidth / 2), ¬
+		((item 4 of windowRect) * yPercent) + (item 2 of windowRect) - (boxHeight / 2), ¬
+		boxWidth, ¬
+		boxHeight ¬
+	}
+end boundsToBox
 
 -- concatenate list to string
 on join(theList, theDelimiter)
@@ -38,7 +44,7 @@ press(space)
 delay 3
 
 -- a region a little in front of the dino and above the ground
-set keyRect to join(boundsToRect(dinoBounds), ",")
+set keyRect to join(boundsToBox(dinoBounds, 0.28, 0.59, 100, 50), ",")
 
 repeat 300 times
 	do shell script "screencapture -x -R " & keyRect & " /tmp/dino.png"
