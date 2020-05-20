@@ -4,7 +4,12 @@ description: AppleScript snippet to play chrome://dino
 url: https://cmbuckley.co.uk
 baseurl: /dino
 
+repository: cmbuckley/dino
 remote_theme: "cmbuckley/cmbuckley.github.io"
+
+plugins:
+  - jekyll-github-metadata
+  - jekyll-remote-theme
 
 markdown: kramdown
 highlighter: rouge
@@ -34,4 +39,3 @@ social:
    facebook:  cmbuckley
    instagram: c.m.buckley
    amazon:    https://bux.re/amzn
-   google:    https://bux.re/+
