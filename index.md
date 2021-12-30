@@ -9,7 +9,7 @@ image:
 
 I was inspired by a great [video of someone using a light sensor and a servo to play `chrome://dino`](https://imgur.com/gallery/u8bkoIX), so I decided that it must be pretty easy to make a software version of it!
 
-The script starts the game and then repeatedly takes a screen shot a certain distance ahead of the dino. The screen shot it taken just above the path, so should be a single colour if there are no obstacles coming up. The script then counts the unique colours, and jumps if there is more than one.
+The script starts the game and then repeatedly takes a screen shot a certain distance ahead of the dino. The screen shot is taken just above the path, so should be a single colour if there are no obstacles coming up. The script then counts the unique colours, and jumps if there is more than one.
 
 ## Requirements
 
