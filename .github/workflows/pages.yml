@@ -1,7 +1,7 @@
 name: Deploy Jekyll site to Pages
 on:
   push:
-    branches: main
+    branches: gh-pages
 
 permissions:
   contents: read
